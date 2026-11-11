@@ -113,7 +113,5 @@ auth.json
 static/*.css
 static/*.js
 
-# PDF files (if they are generated)
-provas/*.pdf
 
 # End of .gitignore
