@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Entrega de Provas - Laboratório</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Entrega de Provas</h1>
+            <p>Laboratório de Informática</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Download da Prova</h2>
+                <p>Para começar, faça o download da prova:</p>
+                <a href="/prova" class="btn btn-primary">Baixar Prova (PDF)</a>
+            </div>
+
+            <div class="card">
+                <h2>Envio de Respostas</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="aluno">Nome do Aluno:</label>
+                        <input type="text" id="aluno" name="aluno" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resposta">Arquivo ZIP com Respostas:</label>
+                        <input type="file" id="resposta" name="resposta" accept=".zip" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Enviar Respostas</button>
+                </form>
+                
+                <div id="status"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Sistema de Entrega de Provas - Laboratório de Informática</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
