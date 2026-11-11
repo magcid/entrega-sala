@@ -26,10 +26,28 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
-@app.route('/prova')
-def download_prova():
-    prova_path = os.path.join(PROVAS_DIR, 'prova.pdf')
-    if os.path.exists(prova_path):
+@app.route('/provas')
+def list_provas():
+    # List all files in the provas directory
+    provas_files = os.listdir(PROVAS_DIR)
+    
+    # Filter out directories (only return files)
+    provas_files = [f for f in provas_files if os.path.isfile(os.path.join(PROVAS_DIR, f))]
+    
+    if not provas_files:
+        return "Nenhuma prova encontrada", 404
+    
+    # Return list of available files
+    return jsonify({
+        'files': provas_files,
+        'count': len(provas_files)
+    })
+
+@app.route('/prova/<filename>')
+def download_prova(filename):
+    prova_path = os.path.join(PROVAS_DIR, filename)
+    
+    if os.path.exists(prova_path) and os.path.isfile(prova_path):
         return send_file(prova_path, as_attachment=True)
     else:
         return "Prova não encontrada", 404

@@ -17,7 +17,10 @@
             <div class="card">
                 <h2>Download da Prova</h2>
                 <p>Para começar, faça o download da prova:</p>
-                <a href="/prova" class="btn btn-primary">Baixar Prova (PDF)</a>
+                <div id="provas-list">
+                    <!-- List of available files will be populated by JavaScript -->
+                    <p>Carregando provas disponíveis...</p>
+                </div>
             </div>
 
             <div class="card">
@@ -46,5 +49,29 @@
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Load available proofs when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/provas')
+                .then(response => response.json())
+                .then(data => {
+                    const provasList = document.getElementById('provas-list');
+                    if (data.files && data.files.length > 0) {
+                        let html = '<p>Provas disponíveis:</p><ul>';
+                        data.files.forEach(file => {
+                            html += `<li><a href="/prova/${file}" class="btn btn-primary">${file}</a></li>`;
+                        });
+                        html += '</ul>';
+                        provasList.innerHTML = html;
+                    } else {
+                        provasList.innerHTML = '<p>Nenhuma prova disponível.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar provas:', error);
+                    document.getElementById('provas-list').innerHTML = '<p>Erro ao carregar provas disponíveis.</p>';
+                });
+        });
+    </script>
 </body>
 </html>
