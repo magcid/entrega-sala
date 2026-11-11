@@ -21,6 +21,15 @@ Este sistema permite a entrega de provas em laboratórios de informática utiliz
 - Python 3.7+
 - Flask
 
+### Clonando o Repositório
+
+Para clonar este repositório localmente:
+
+```bash
+git clone https://github.com/magcid/entrega-sala.git
+cd entrega-sala
+```
+
 ### Instalação
 
 ```bash
@@ -69,8 +78,5 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para m
 
 ## 👥 Contribuidores
 
-Este projeto existe graças às pessoas que contribuem com o código e feedback.
+Este projeto é experimental, elaborado pelo prof. Dr. Marcelo F. Rauber.  
 
-## 🙏 Agradecimentos
-
-- Agradeço ao laboratório de informática pela oportunidade de desenvolver este sistema
